@@ -5,6 +5,7 @@ An online quiz tech students could take to prepare for their tech interviews. Yo
 
 ## Screen-recording of the quiz:
 
+[Codequiz.webm](https://user-images.githubusercontent.com/109717048/209018177-bfd8b700-83e7-4cc5-9772-80c58a8673ec.webm)
 
 
 ## Built by:
