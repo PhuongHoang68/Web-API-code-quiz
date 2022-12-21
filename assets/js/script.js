@@ -85,7 +85,6 @@ var questionsHandler = function(event){
     $(".questions-page").show();
     $(".done-page").hide();
     $(".high-score-page").hide();
-    $(".footer").hide()
 
 
     var startTimer = setInterval(function() {
@@ -112,21 +111,16 @@ var questionsHandler = function(event){
 };
 
 //moving onto the next question
-var nextQuestion = function(userInput, questions) {
-    for (let i=0; i < questions.length; i++) {
-        const question = questions[i];
-        if(question.answer === userInput) {
-            score = score + 10;
-            answerContainerEl.innerText = "Correct answer! Great job!"
-        } else {
-            answerContainerEl.innerText="Incorrect. The answer is <" +questions[questionNumber].answer+ "> . Your timer has been subtracted by 10!"
-            timer = timer - 10;            
-        }
+var nextQuestion = function(answer) {
+    if (questions[questionNumber].answer === answer.target.innerText) {
+        score = score + 10;
+        answerContainerEl.innerText = "Correct answer! Great job!"
+    } else {
+        answerContainerEl.innerText="Incorrect. The answer is <" +questions[questionNumber].answer+ "> . Your timer has been subtracted by 10!"
+        timer = timer - 10;
     }
-
     questionNumber ++;
 
-    console.log(userInput);
     console.log(score);
 
     scoreEl.innerText = score;
