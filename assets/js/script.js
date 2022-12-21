@@ -10,6 +10,9 @@ var answerContainerEl = document.querySelector("#answer-container");
 
 var formEl = document.querySelector("#form");
 
+var finalScoreEl=document.querySelector("#final-score")
+var highScoreBoardEl=document.querySelector("#high-score-board");
+
 var returnButtonEl = document.querySelector("#return");
 var clearScoresButtonEl = document.querySelector("#clear-scores");
 
@@ -82,6 +85,7 @@ var questionsHandler = function(event){
     $(".questions-page").show();
     $(".done-page").hide();
     $(".high-score-page").hide();
+    $(".footer").hide()
 
 
     var startTimer = setInterval(function() {
@@ -108,16 +112,21 @@ var questionsHandler = function(event){
 };
 
 //moving onto the next question
-var nextQuestion = function(answer) {
-    if (questions[questionNumber].answer === questions[questionNumber].choices[answer]) {
-        score = score + 10;
-        answerContainerEl.innerText = "Correct answer! Great job!"
-    } else {
-        answerContainerEl.innerText="Incorrect. The answer is <" +questions[questionNumber].answer+ "> . Your timer has been subtracted by 10!"
-        timer = timer - 10;
+var nextQuestion = function(userInput, questions) {
+    for (let i=0; i < questions.length; i++) {
+        const question = questions[i];
+        if(question.answer === userInput) {
+            score = score + 10;
+            answerContainerEl.innerText = "Correct answer! Great job!"
+        } else {
+            answerContainerEl.innerText="Incorrect. The answer is <" +questions[questionNumber].answer+ "> . Your timer has been subtracted by 10!"
+            timer = timer - 10;            
+        }
     }
+
     questionNumber ++;
 
+    console.log(userInput);
     console.log(score);
 
     scoreEl.innerText = score;
@@ -131,12 +140,18 @@ var gameOver = function() {
     $(".questions-page").hide();
     $(".done-page").show();
     $(".high-score-page").hide();
+    $(".footer").hide()
+
+    finalScoreEl.innerText = score;
+    console.log(finalScoreEl);
 
     formEl.addEventListener("submit", formHandler);
 };
 
+
 var formHandler = function(event) {
     event.preventDefault();
+
     var formInput = document.querySelector("input[name='name']").value;
   
 
@@ -145,6 +160,12 @@ var formHandler = function(event) {
     alert("You need to fill out your initials to access score board!");
     return false;
   } 
+  localStorage.setItem("Final Score", score);
+  localStorage.setItem("Name", formInput );
+
+
+  highScoreBoardEl.innerText= formInput + "  -  " + score
+
   highScoreBoard();
 };
 
@@ -153,13 +174,9 @@ var highScoreBoard = function() {
     $(".questions-page").hide();
     $(".done-page").hide();
     $(".high-score-page").show();
+    $(".footer").show()
 
-    returnButtonEl.addEventListener("click", returnHandler);
-    clearScoresButtonEl.addEventListener("click", clearScoresHandler);
 
-    if (returnHandler) {
-        questionsHandler;
-    }
 };
 
 

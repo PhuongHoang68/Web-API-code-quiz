@@ -1,3 +1,54 @@
 .hidden {
     display: none;
 }
+
+.text-center {
+    text-align: center;
+}
+
+.header {
+    display: flex;
+}
+.view {
+    color:rgb(244, 139, 154);
+    font-weight: bold;
+}
+
+.timer{
+    font-weight: bold;
+    color: red;
+}
+
+.styles {
+    margin-top: 140px;
+    font-size: x-large;
+}
+.home-page {
+    margin-top: 150px;
+    font-size:xx-large ;
+}
+.timer {
+    margin-left: 1280px;
+}
+footer {
+    margin-top: 270px;
+    font-size:x-large;
+}
+
+.btn{
+    border-radius: 8px;
+    text-align: center;
+    font-size: medium;
+    color: white;
+    background-color: #008CBA;
+}
+.btn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+#container {
+    border: 1px solid red;
+    box-sizing: border-box;
+    border-width: thin medium thin medium;
+
+}
